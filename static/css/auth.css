@@ -1,0 +1,47 @@
+/* Styles for authentication pages */
+body {
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+}
+.auth-card {
+  max-width: 420px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+  padding: 28px;
+}
+
+.auth-wrapper {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.auth-brand {
+  text-align: center;
+  margin-bottom: 18px;
+}
+.auth-brand h1 {
+  font-size: 20px;
+  margin: 0;
+}
+.auth-subtitle {
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+.form-control {
+  border-radius: 8px;
+}
+.btn-primary {
+  border-radius: 8px;
+}
+.auth-footer {
+  font-size: 14px;
+  color: #6b7280;
+}
+.small-link {
+  font-size: 14px;
+}
