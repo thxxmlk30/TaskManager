@@ -15,9 +15,9 @@ from django.views import View
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
-from django.contrib.auth import authenticate
+from django.contrib.auth.forms import SetPasswordForm
 
-from .forms import OTPRequestForm, OTPLoginForm
+from .forms import OTPRequestForm
 from .models import OTP
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -41,7 +41,8 @@ def inscription(request):
                 recipient_list=[user.email],
             )
             messages.success(request, "Un code de confirmation a été envoyé par e-mail.")
-            return redirect(f"{reverse_lazy('accounts:otp_verify')}?mode=signup&email={user.email}")
+            url = reverse_lazy("accounts:otp_verify")
+            return redirect(f"{url}?mode=signup&email={user.email}")
     else:
         form = InscriptionForm()
     return render(request, "accounts/inscription.html", {"form": form})
@@ -96,7 +97,8 @@ class OTPRequestView(View):
                 recipient_list=[email],
             )
             messages.success(request, "Un code de récupération a été envoyé par e-mail.")
-            return redirect(f"{reverse_lazy('accounts:otp_verify')}?mode=recovery&email={email}")
+            url = reverse_lazy("accounts:otp_verify")
+            return redirect(f"{url}?mode=recovery&email={email}")
         return render(request, "accounts/otp_request.html", {"form": form})
  
 
@@ -162,8 +164,9 @@ class OTPVerifyView(View):
                 login(request, user)
                 messages.success(request, "Compte activé et connecté.")
                 return redirect("projects:liste_projets")
-            else:  # recovery
+                else:  # recovery
                 # allow password set
                 request.session["otp_recovery_user"] = user.id
-                return redirect(f"{reverse_lazy('accounts:otp_verify')}?mode=recovery")
-        return render(request, "accounts/otp_verify.html", {"otp_form": otp_form, "mode": mode})
+                url = reverse_lazy("accounts:otp_verify")
+                return redirect(f"{url}?mode=recovery")
+            return render(request, "accounts/otp_verify.html", {"otp_form": otp_form, "mode": mode})
