@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
@@ -22,8 +23,9 @@ def inscription(request):
             user = form.save(commit=False)
             user.is_active = True
             user.save()
-            messages.success(request, "Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.")
-            return redirect("accounts:connexion")
+            login(request, user)
+            messages.success(request, "Votre compte a été créé et vous êtes connecté.")
+            return redirect("projects:liste_projets")
     else:
         form = InscriptionForm()
     return render(request, "accounts/inscription.html", {"form": form})
