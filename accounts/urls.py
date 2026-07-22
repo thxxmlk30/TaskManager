@@ -12,6 +12,4 @@ urlpatterns = [
     path("mot-de-passe-oublie/done/", views.PasswordResetDone.as_view(), name="password_reset_done"),
     path("reset/<uidb64>/<token>/", views.PasswordResetConfirm.as_view(), name="password_reset_confirm"),
     path("reset/done/", views.PasswordResetComplete.as_view(), name="password_reset_complete"),
-    path("otp/request/", views.OTPRequestView.as_view(), name="otp_request"),
-    path("otp/verify/", views.OTPVerifyView.as_view(), name="otp_verify"),
 ]
