@@ -38,6 +38,14 @@ jobs:
       - name: Installer les dépendances
         run: pip install -r requirements.txt
 
+      - name: Collecter les fichiers statiques
+        env:
+          SECRET_KEY: ci-test-secret-key
+          DEBUG: "False"
+          SECURE_SSL_REDIRECT: "False"
+          ALLOWED_HOSTS: "127.0.0.1,localhost,testserver"
+        run: python manage.py collectstatic --noinput
+
       - name: Vérifier le style (flake8)
         run: |
           pip install flake8
