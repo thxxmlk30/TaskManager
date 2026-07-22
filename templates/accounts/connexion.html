@@ -20,12 +20,10 @@
     </form>
     <div class="d-flex justify-content-between align-items-center mt-3 auth-footer">
         <div>Pas encore de compte ? <a href="{% url 'accounts:inscription' %}">S'inscrire</a></div>
-        <div class="small-link">
-            <a href="{% url 'accounts:password_reset' %}">Mot de passe oublié</a>
-            &nbsp;|&nbsp;
-            <a href="{% url 'accounts:otp_request' %}">OTP</a>
+            <div class="small-link">
+                <a href="{% url 'accounts:password_reset' %}">Mot de passe oublié</a>
+            </div>
         </div>
-    </div>
   </div>
 </div>
 {% endblock %}

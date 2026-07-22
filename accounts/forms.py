@@ -23,20 +23,3 @@ class InscriptionForm(UserCreationForm):
         return user
 
 
-class OTPRequestForm(forms.Form):
-    email = forms.EmailField()
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs.update({"class": "form-control"})
-
-
-class OTPLoginForm(forms.Form):
-    email = forms.EmailField()
-    code = forms.CharField(max_length=6)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs.update({"class": "form-control"})
