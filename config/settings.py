@@ -126,8 +126,8 @@ LOGOUT_REDIRECT_URL = "accounts:connexion"
 
 # --- Sécurité supplémentaire en production ----------------------------------
 
+SECURE_SSL_REDIRECT = config("SECURE_SSL_REDIRECT", default=(not DEBUG), cast=bool)
 if not DEBUG:
-    SECURE_SSL_REDIRECT = config("SECURE_SSL_REDIRECT", default=True, cast=bool)
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
