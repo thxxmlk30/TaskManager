@@ -164,7 +164,7 @@ class OTPVerifyView(View):
                 login(request, user)
                 messages.success(request, "Compte activé et connecté.")
                 return redirect("projects:liste_projets")
-                else:  # recovery
+            else:  # recovery
                 # allow password set
                 request.session["otp_recovery_user"] = user.id
                 url = reverse_lazy("accounts:otp_verify")
